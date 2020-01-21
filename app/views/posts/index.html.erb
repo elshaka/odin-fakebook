@@ -1,0 +1,21 @@
+
+<div  class="profile">
+  <div class="profile-image">
+  <%= image_tag @user.profile_image_url %>
+  </div>
+  </div class="profile-tag">
+    Hello, <%= @user.name %>.
+  </div>
+</div>
+
+<div class="timeline">
+  <p>Welcome to your timeline.</p>
+
+  <ol>
+    <% @user.posts.each do |post| %>
+      <li>
+        <%= render 'post', post: post %>
+      </li>
+    <% end %>
+  </ol>
+</div>
