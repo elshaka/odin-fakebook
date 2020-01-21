@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
   it 'should downcase the provided email before saving' do
     email = Faker::Internet.email.upcase
     user.email = email
-    user.save
+    user.validate
 
     expect(user.email).to eql(email.downcase)
   end
@@ -60,4 +60,13 @@ RSpec.describe User, type: :model do
 
     expect(user.profile_image_url).to be_present
   end
+
+  it 'should have a working has_many :posts relationship' do
+    user.save
+    10.times { user.posts.create FactoryBot.attributes_for :post }
+    user.reload
+
+    expect(user.posts.count).to eql(10)
+  end
 end
+
