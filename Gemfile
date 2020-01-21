@@ -33,7 +33,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
-
 gem 'faker'
 
 group :development, :test do
@@ -44,6 +43,7 @@ group :development, :test do
   gem 'railroady'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
