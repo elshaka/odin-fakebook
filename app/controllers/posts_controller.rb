@@ -16,6 +16,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def comment
+    @post = Post.find_by(id: params[:id])
+    @post.comments.create content: params[:content], user: current_user
+    redirect_to @post
+  end
+
   private
 
   def post_params
