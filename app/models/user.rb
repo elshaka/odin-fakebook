@@ -12,6 +12,11 @@ class User < ApplicationRecord
 
   before_save :set_profile_image_url
 
+  # Timeline posts consist only on the user posts until friendships are fully implemented
+  def timeline_posts
+    self.posts
+  end
+
   private
 
   def set_profile_image_url
