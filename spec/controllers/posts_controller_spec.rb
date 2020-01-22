@@ -16,7 +16,7 @@ RSpec.describe PostsController, type: :controller do
   describe '#create' do
     it 'should create a post for the current user' do
       post_params = FactoryBot.attributes_for :post
-      post :create, params: {post: post_params}, xhr: true
+      post :create, params: { post: post_params }, xhr: true
 
       expect(user.posts.last.content).to eql(post_params[:content])
     end
@@ -25,7 +25,7 @@ RSpec.describe PostsController, type: :controller do
   describe '#show' do
     it 'should retrieve the post' do
       post = FactoryBot.create :post, user: user
-      get :show, params: {id: post.id}
+      get :show, params: { id: post.id }
 
       expect(assigns(:post)).to eql(post)
     end
