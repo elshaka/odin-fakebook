@@ -8,6 +8,18 @@
         <h5 class="card-title"><%= link_to post.user.name, user_path(post.user) %></h5>
         <h6 class="card-subtitle mb-2 text-muted font-italic"><%= link_to time_ago_in_words(post.created_at) + ' ago', post %></h6>
         <p class="card-text"><%= post.content %></p>
+        <% unless post.comments.empty? %>
+        <div class="post-comments">
+          Comments:
+          <ol>
+            <% post.comments.each do |comment| %>
+              <li>
+                <%= render 'posts/comment', comment: comment %>
+              </li>
+            <% end %>
+          </ol>
+        <% end %>
+        </div>
       </div>
     </div>
   </div>
