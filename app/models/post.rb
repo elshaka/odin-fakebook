@@ -4,4 +4,6 @@ class Post < ApplicationRecord
   has_many :likes
 
   validates :content, presence: true
+
+  default_scope { includes(:user) }
 end
