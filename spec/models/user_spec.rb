@@ -69,4 +69,3 @@ RSpec.describe User, type: :model do
     expect(user.posts.count).to eql(10)
   end
 end
-
