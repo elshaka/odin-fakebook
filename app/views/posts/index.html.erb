@@ -1,0 +1,13 @@
+<div class="post-form d-flex">
+  <div class="mr-4">
+    <%= image_tag current_user.profile_image_url + '?s=64', alt: current_user.name %>
+  </div>
+  <div class="flex-fill">
+    <%= render 'posts/form', post: @post %>
+  </div>
+</div>
+<div class='timeline'>
+  <% @timeline_posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>

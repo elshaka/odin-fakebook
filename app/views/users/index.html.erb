@@ -1,0 +1,10 @@
+<div class="profiles">
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-md-3 mb-2">
+        <%= render 'user', user: user %>
+      </div>
+    <% end %>
+  </div>
+  </ol>
+</div>

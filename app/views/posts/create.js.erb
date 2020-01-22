@@ -1,0 +1,7 @@
+$('#error_explanation').remove()
+<% if @post.errors.any? %>
+  $('form').prepend('<%=j render 'shared/error_messages', resource: @post %>');
+<% else %>
+  $('textarea').val('');
+  $('.timeline').prepend('<%=j render @post %>');
+<% end %>

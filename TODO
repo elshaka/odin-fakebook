@@ -1,0 +1,10 @@
+# TODO
+
+Milestone 3 (Users and posts)
+  - Implement models and relationships for User and Post (With unit tests)
+  - Controllers/Views
+    - Posts index page
+      - Timeline (Only current user posts for the moment)
+    - User profile view.
+      Shows user info and posts
+    - Signin/Signout
