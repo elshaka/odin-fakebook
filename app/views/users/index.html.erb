@@ -3,6 +3,7 @@
   <ol>
     <li>
       <%= render 'user', user: user %>
+      <%= link_to 'Profile', user_path(user) %>
     </li>
   </ol>
   <% end %>
