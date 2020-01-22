@@ -7,7 +7,7 @@ RSpec.describe UsersController, type: :controller do
   describe '#index' do
     it 'should return a list of all users' do
       10.times { FactoryBot.create :user }
-      get :index      
+      get :index
       expect(assigns(:users).length).to eql(11)
     end
   end
