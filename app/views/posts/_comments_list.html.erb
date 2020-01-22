@@ -1,0 +1,10 @@
+<div class="post-comments">
+  Comments:
+  <ol>
+    <% post.comments.each do |comment| %>
+      <li>
+        <%= render 'posts/comment', comment: comment %>
+      </li>
+    <% end %>
+  </ol>
+</div>
