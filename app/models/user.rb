@@ -9,18 +9,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable, :rememberable
 
   validates :name, presence: true, length: { maximum: 50 }
-
-  before_save :set_profile_image_url
-
-  # Timeline posts consist only on the user posts until friendships are fully implemented
-  def timeline_posts
-    posts
-  end
-
-  private
-
-  def set_profile_image_url
-    gravatar_id = Digest::MD5.hexdigest(email.downcase)
-    profile_image_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
-  end
 end
