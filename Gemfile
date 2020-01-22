@@ -47,6 +47,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'railroady'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'selenium-webdriver'
 end
 
