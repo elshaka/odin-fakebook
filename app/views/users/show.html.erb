@@ -1,3 +1,17 @@
 <div class="user-profile">
   <%= render 'user', user: @user %>
+  <div class="posts">
+  Posts:
+  <% if @user.posts.empty? %>
+  [NO POSTS]
+  <% else %>
+  <ol>
+    <% @user.posts.each do |post| %>
+    <li>
+      <%= render partial: 'posts/post', locals: { post: post } %>
+    </li>
+    <% end %>
+  </ol>
+  <% end %>
+  </div>
 </div>
