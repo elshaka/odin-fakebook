@@ -14,13 +14,13 @@ class User < ApplicationRecord
 
   # Timeline posts consist only on the user posts until friendships are fully implemented
   def timeline_posts
-    self.posts
+    posts
   end
 
   private
 
   def set_profile_image_url
     gravatar_id = Digest::MD5.hexdigest(email.downcase)
-    self.profile_image_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
+    profile_image_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
   end
 end
