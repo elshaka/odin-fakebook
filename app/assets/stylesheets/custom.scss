@@ -14,7 +14,7 @@
 }
 
 .container {
-  padding-top: 10px;
+  padding-top: 50px;
 }
 
 .jumbotron {
@@ -33,4 +33,24 @@ h2, h3 {
 
 .field_with_errors input, .field_with_errors textarea {
   @extend .is-invalid;
+}
+
+.post-form {
+  margin-bottom: 50px;
+}
+
+.post-container {
+  margin-bottom: 20px;
+
+  a {
+    color: inherit;
+  }
+}
+
+.user-container {
+  margin-bottom: 20px;
+
+  a {
+    color: inherit;
+  }
 }

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @post = Post.new
-    @posts = current_user.timeline_posts
+    @timeline_posts = current_user.posts
   end
 
   def show

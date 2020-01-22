@@ -1,9 +1,8 @@
-<%= form_with model: @post do |f| %>
+<%= form_with model: post do |f| %>
   <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, autofocus: true, autocomplete: "content", class: "form-control" %>
+    <%= f.text_area :content, autofocus: true, placeholder: "What's going on?", class: "form-control" %>
   </div>
-  <div class="actions text-center">
+  <div class="actions">
     <%= f.submit "Create post", class: "btn btn-primary" %>
   </div>
 <% end %>

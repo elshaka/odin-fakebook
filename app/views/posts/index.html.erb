@@ -1,22 +1,13 @@
-<div  class="profile">
-  <div class="profile-image">
-  <%= image_tag current_user.profile_image_url %>
+<div class="post-form d-flex">
+  <div class="mr-4">
+    <%= image_tag current_user.profile_image_url + '?s=64', alt: current_user.name %>
   </div>
-  </div class="profile-tag">
-    Hello, <%= current_user.name %>.
+  <div class="flex-fill">
+    <%= render 'posts/form', post: @post %>
   </div>
 </div>
-
-<%= render 'posts/form', post: @post %>
-
-<div class="timeline">
-  <p>Welcome to your timeline.</p>
-
-  <ol>
-    <% @posts.each do |post| %>
-      <li>
-        <%= render post %>
-      </li>
-    <% end %>
-  </ol>
+<div class='timeline'>
+  <% @timeline_posts.each do |post| %>
+    <%= render post %>
+  <% end %>
 </div>
