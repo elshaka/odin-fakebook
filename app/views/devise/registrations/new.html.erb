@@ -24,7 +24,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
   </div>
 
-  <div class="actions">
+  <div class="text-center">
     <%= f.submit "Sign up", class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<div class="account-form text-center">
+  Already have an account? <%= link_to 'Click here to sign in', new_user_session_path %>
+</div>
