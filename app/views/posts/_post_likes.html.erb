@@ -1,0 +1,4 @@
+<% liked = post.likes.find_by(user: current_user).present? %>
+<%= link_to icon(liked ? 'fas' : 'far', 'heart') + " #{post.likes.count}",
+  liked ? dislike_post_path(post) : like_post_path(post),
+  method: :post, remote: true, class: 'card-link' %>

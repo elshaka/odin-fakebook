@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 #logo {
   float: left;
@@ -53,4 +55,8 @@ h2, h3 {
   a {
     color: inherit;
   }
+}
+
+.like-link {
+  color: $pink;
 }
