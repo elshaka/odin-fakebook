@@ -1,0 +1,36 @@
+@import "bootstrap";
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.container {
+  padding-top: 10px;
+}
+
+.jumbotron {
+  text-align: center;
+}
+
+h2, h3 {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.account-form {
+  max-width: 640px;
+  margin: 20px auto;
+}
+
+.field_with_errors input, .field_with_errors textarea {
+  @extend .is-invalid;
+}

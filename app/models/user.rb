@@ -15,7 +15,7 @@ class User < ApplicationRecord
   private
 
   def set_profile_image_url
-    gravatar_id = Digest::MD5::hexdigest(email.downcase)
+    gravatar_id = Digest::MD5.hexdigest(email.downcase)
     self.profile_image_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
   end
 end

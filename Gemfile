@@ -33,18 +33,21 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
-gem 'omniauth-facebook'
 gem 'faker'
+gem 'omniauth-facebook'
+
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'railroady'
-  gem 'selenium-webdriver'
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'railroady'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
 end
 
 group :development do
