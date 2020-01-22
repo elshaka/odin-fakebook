@@ -1,0 +1,9 @@
+<div class="profiles">
+  <% @users.each do |user| %>
+  <ol>
+    <li>
+      <%= render 'user', user: user %>
+    </li>
+  </ol>
+  <% end %>
+</div>
