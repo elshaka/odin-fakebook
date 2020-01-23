@@ -37,6 +37,7 @@ gem 'faker'
 gem 'omniauth-facebook'
 
 gem 'bootstrap', '~> 4.3.1'
+gem 'font-awesome-sass', '~> 5.12.0'
 gem 'jquery-rails'
 
 group :development, :test do

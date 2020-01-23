@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 #logo {
   float: left;
@@ -36,7 +38,7 @@ h2, h3 {
 }
 
 .post-form {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .post-container {
@@ -53,4 +55,13 @@ h2, h3 {
   a {
     color: inherit;
   }
+}
+
+.likes-link {
+  color: $pink;
+  padding-right: 10px;
+}
+
+.comments-link {
+  color: $secondary;
 }
