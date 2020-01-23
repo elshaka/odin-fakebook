@@ -29,6 +29,10 @@ class User < ApplicationRecord
     reverse_friendships.find_by(user: user, confirmed: false)
   end
 
+  def timeline_posts
+    Post.where(user_id: [self.id] + friends.pluck(:id))
+  end
+
   private
 
   def set_profile_image_url
