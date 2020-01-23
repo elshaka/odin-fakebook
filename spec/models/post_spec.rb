@@ -22,13 +22,13 @@ RSpec.describe Post, type: :model do
     before { post.save }
 
     it "should return false if the user hasn't liked the post" do
-      expect(post.liked_by? user).to be false
+      expect(post.liked_by?(user)).to be false
     end
 
-    it "should return false if the user has liked the post" do
+    it 'should return false if the user has liked the post' do
       post.likes.create user: user
 
-      expect(post.liked_by? user).to be true
+      expect(post.liked_by?(user)).to be true
     end
   end
 end

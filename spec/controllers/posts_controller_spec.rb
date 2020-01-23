@@ -52,15 +52,15 @@ RSpec.describe PostsController, type: :controller do
   describe '#comment' do
     it 'should create a comment on the post' do
       expect(some_post.comments.empty?).to eql(true)
-      post :comment, params: { id: some_post.id, content: "First!" }
+      post :comment, params: { id: some_post.id, content: 'First!' }
       expect(some_post.comments.empty?).to eql(false)
     end
 
     it 'should create multiple comments on the post' do
       expect(some_post.comments.count).to eql(0)
-      post :comment, params: { id: some_post.id, content: "First!" }
-      post :comment, params: { id: some_post.id, content: "Second!" }
-      post :comment, params: { id: some_post.id, content: "Third!" }
+      post :comment, params: { id: some_post.id, content: 'First!' }
+      post :comment, params: { id: some_post.id, content: 'Second!' }
+      post :comment, params: { id: some_post.id, content: 'Third!' }
       expect(some_post.comments.count).to eql(3)
     end
   end
