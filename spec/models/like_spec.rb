@@ -8,6 +8,6 @@ RSpec.describe Like, type: :model do
     post.likes.create user: user
     repeated_like = post.likes.create user: user
 
-    expect(repeated_like.errors).to have_key(:user)
+    expect(repeated_like.errors).to have_key(:post)
   end
 end
