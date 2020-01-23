@@ -30,6 +30,10 @@ class User < ApplicationRecord
     pending_friends.include?(user)
   end
 
+  def timeline_posts
+    Post.where(user_id: [self.id] + friends.pluck(:id))
+  end
+
   private
 
   def set_profile_image_url
