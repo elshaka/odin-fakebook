@@ -24,16 +24,16 @@ RSpec.describe UsersController, type: :controller do
     it 'should create a friend request' do
       friend = FactoryBot.create :user
       expect(user.friendships.empty?).to eql(true)
-      post :send_friend_request, params: { id: friend.id }
+      post :send_friend_request, params: { id: friend.id }, xhr: true
       expect(user.friendships.empty?).to eql(false)
     end
   end
 
   describe '#accept_friend_request' do
     it 'should accept a friend request' do
-      friend = FactoryBot.create :user      
+      friend = FactoryBot.create :user
       friendship = friend.friendships.create friend_id: user.id
-      post :accept_friend_request, params: { id: friend.id }
+      post :accept_friend_request, params: { id: friend.id }, xhr: true
       expect(friend.friends).to include(user)
     end
   end
