@@ -12,15 +12,22 @@ class User < ApplicationRecord
   before_save :set_profile_image_url
 
   def friends
-    direct_friends = friendships.map do |friendship|
-      friendship.friend if friendship.confirmed
-    end
+    friends_ids = friendships.where(confirmed: true).pluck(:friend_id)
+    friends_ids += reverse_friendships.where(confirmed: true).pluck(:user_id)
+    User.where(id: friends_ids)
+  end
 
-    reverse_friends = reverse_friendships.map do |friendship|
-      friendship.user if friendship.confirmed
-    end
+  def pending_friends
+    pending_friends_ids = friendships.where(confirmed: false).pluck(:friend_id)
+    User.where(id: pending_friends_ids)
+  end
 
-    direct_friends + reverse_friends
+  def friend?(user)
+    friends.include?(user)
+  end
+
+  def pending_friend?(user)
+    pending_friends.include?(user)
   end
 
   private
