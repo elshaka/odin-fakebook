@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show, :create]
   resources :users, only: [:index, :show]
 
-  post '/posts/:id/comment', to: 'posts#comment'
+  post '/posts/:id/comment', to: 'posts#comment', as: :comments
 end
