@@ -1,9 +1,11 @@
-<div class="post-form d-flex">
-  <div class="mr-4">
-    <%= image_tag current_user.profile_image_url + '?s=64', alt: current_user.name %>
-  </div>
-  <div class="flex-fill">
-    <%= render 'posts/form', post: @post %>
+<div class="post-form card bg-light">
+  <div class="card-body d-flex">
+    <div class="mr-4">
+      <%= image_tag current_user.profile_image_url + '?s=64', alt: current_user.name %>
+    </div>
+    <div class="flex-fill">
+      <%= render 'posts/form', post: @post %>
+    </div>
   </div>
 </div>
 <div class='timeline'>

@@ -1,0 +1,4 @@
+<% liked = post.liked_by?(current_user) %>
+<%= link_to icon(liked ? 'fas' : 'far', 'heart') + " #{pluralize(post.likes.count, "Like")}",
+  liked ? dislike_post_path(post) : like_post_path(post),
+  method: :post, remote: true, class: 'card-link' %>

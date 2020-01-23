@@ -6,10 +6,13 @@
       </div>
       <div class="flex-fill">
         <h5 class="card-title"><%= link_to post.user.name, user_path(post.user) %></h5>
-        <h6 class="card-subtitle mb-2 text-muted font-italic"><%= link_to time_ago_in_words(post.created_at) + ' ago', post %></h6>
+        <p class="card-subtitle mb-2 text-muted font-italic"><%= link_to time_ago_in_words(post.created_at) + ' ago', post %></p>
         <p class="card-text"><%= post.content %></p>
-        <span class="like-link">
-          <%= render 'posts/post_likes', post: post %>
+        <span class="likes-link">
+          <%= render 'posts/post_likes_link', post: post %>
+        </span>
+        <span class="comments-link">
+          <%= render 'posts/post_comments_link', post: post %>
         </span>
       </div>
     </div>
