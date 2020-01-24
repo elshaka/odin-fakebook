@@ -14,16 +14,16 @@ class Friendship < ApplicationRecord
   end
 
   def create_reverse_friendship
-    reverse_friendship = Friendship.new user: self.friend, friend: self.user, confirmed: self.confirmed, sent: false
+    reverse_friendship = Friendship.new user: friend, friend: user, confirmed: confirmed, sent: false
     reverse_friendship.save if reverse_friendship.valid?
   end
 
   def update_reverse_friendship_status
-    Friendship.find_by(user: self.friend, friend: self.user).update_column(:confirmed, self.confirmed)
+    Friendship.find_by(user: friend, friend: user).update_column(:confirmed, confirmed)
   end
 
   def destroy_reverse_friendship
-    reverse_friendship = Friendship.find_by(user: self.friend, friend: self.user)
+    reverse_friendship = Friendship.find_by(user: friend, friend: user)
     reverse_friendship.destroy if reverse_friendship.present?
   end
 end

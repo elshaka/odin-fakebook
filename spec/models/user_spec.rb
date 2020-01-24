@@ -72,7 +72,7 @@ RSpec.describe User, type: :model do
   describe '#friend?' do
     context 'when a user is not a friend of another user' do
       it 'should return false' do
-        expect(user.friend? another_user).to be false
+        expect(user.friend?(another_user)).to be false
       end
     end
 
@@ -80,7 +80,7 @@ RSpec.describe User, type: :model do
       before { user.friends << another_user }
 
       it 'should return true' do
-        expect(user.friend? another_user).to be true
+        expect(user.friend?(another_user)).to be true
       end
     end
   end
@@ -88,7 +88,7 @@ RSpec.describe User, type: :model do
   describe '#friendship_request_sent?' do
     context 'when user has not sent a friend request' do
       it 'should return false' do
-        expect(user.friendship_request_sent? another_user).to be false
+        expect(user.friendship_request_sent?(another_user)).to be false
       end
 
       context 'and the other user is the one who sent a friend request' do
@@ -98,7 +98,7 @@ RSpec.describe User, type: :model do
         end
 
         it 'should return false' do
-          expect(user.friendship_request_sent? another_user).to be false
+          expect(user.friendship_request_sent?(another_user)).to be false
         end
       end
     end
@@ -110,7 +110,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'should return true' do
-        expect(user.friendship_request_sent? another_user).to be true
+        expect(user.friendship_request_sent?(another_user)).to be true
       end
     end
   end
@@ -118,7 +118,7 @@ RSpec.describe User, type: :model do
   describe '#friendship_request_received?' do
     context 'when user has not received a friend request' do
       it 'should return false' do
-        expect(user.friendship_request_received? another_user).to be false
+        expect(user.friendship_request_received?(another_user)).to be false
       end
 
       context 'and the other user is the one who received the friend request' do
@@ -128,7 +128,7 @@ RSpec.describe User, type: :model do
         end
 
         it 'should return false' do
-          expect(user.friendship_request_received? another_user).to be false
+          expect(user.friendship_request_received?(another_user)).to be false
         end
       end
     end
@@ -140,7 +140,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'should return true' do
-        expect(user.friendship_request_received? another_user).to be true
+        expect(user.friendship_request_received?(another_user)).to be true
       end
     end
   end
