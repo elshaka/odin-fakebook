@@ -11,10 +11,6 @@ class User < ApplicationRecord
 
   before_save :set_profile_image_url
 
-  def create_friend_request(friend, confirmed = false)
-    friendships.create friend_id: friend.id, confirmed: confirmed
-  end
-
   def friend?(user)
     friends.include?(user)
   end
