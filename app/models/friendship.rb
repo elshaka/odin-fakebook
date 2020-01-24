@@ -6,6 +6,8 @@ class Friendship < ApplicationRecord
   validate :friend_isnt_same_as_user
 
   after_create :create_reverse_friendship
+  after_update :update_reverse_friendship_status
+  after_destroy :destroy_reverse_friendship
 
   def friend_isnt_same_as_user
     errors.add(:friend, "can't be the same as user") if friend_id == user_id
@@ -14,5 +16,14 @@ class Friendship < ApplicationRecord
   def create_reverse_friendship
     reverse_friendship = Friendship.new user: self.friend, friend: self.user, confirmed: self.confirmed
     reverse_friendship.save if reverse_friendship.valid?
+  end
+
+  def update_reverse_friendship_status
+    Friendship.find_by(user: self.friend, friend: self.user).update_column(:confirmed, self.confirmed)
+  end
+
+  def destroy_reverse_friendship
+    reverse_friendship = Friendship.find_by(user: self.friend, friend: self.user)
+    reverse_friendship.destroy if reverse_friendship.present?
   end
 end
