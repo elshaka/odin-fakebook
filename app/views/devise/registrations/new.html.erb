@@ -35,5 +35,7 @@
 <% end %>
 
 <div class="account-form text-center">
-  Already have an account? <%= link_to 'Click here to sign in', new_user_session_path %>
+  <p>Already have an account? <%= link_to 'Click here to sign in', new_user_session_path %></p>
+  <p>or</p>
+  <p><%= render 'shared/facebook_button' %></p>
 </div>

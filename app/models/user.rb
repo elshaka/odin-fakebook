@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :friends, -> { where(friendships: { confirmed: true }) }, through: :friendships
 
   devise :database_authenticatable, :registerable, :validatable, :rememberable
+  devise :omniauthable, omniauth_providers: %i[facebook]
 
   validates :name, presence: true, length: { maximum: 50 }
 
@@ -25,6 +26,14 @@ class User < ApplicationRecord
 
   def timeline_posts
     Post.where(user_id: [id] + friends.pluck(:id))
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name
+    end
   end
 
   private
