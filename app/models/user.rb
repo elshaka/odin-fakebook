@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def timeline_posts
-    Post.where(user_id: [self.id] + friends_ids)
+    Post.where(user_id: [id] + friends_ids)
   end
 
   private
@@ -39,7 +39,8 @@ class User < ApplicationRecord
   end
 
   def friends_ids
-    friends_ids = friendships.where(confirmed: true).pluck(:friend_id)
-    friends_ids += reverse_friendships.where(confirmed: true).pluck(:user_id)
+    ids = friendships.where(confirmed: true).pluck(:friend_id)
+    ids += reverse_friendships.where(confirmed: true).pluck(:user_id)
+    ids
   end
 end

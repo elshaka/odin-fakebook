@@ -10,8 +10,12 @@ class Friendship < ApplicationRecord
   end
 
   def friendship_uniqueness
-    if friendship = Friendship.find_by(user_id: user_id, friend_id: friend_id) || Friendship.find_by(user_id: friend_id, friend_id: user_id)
-      errors.add(:friend, friendship.confirmed ? 'already exists' : 'request is pending')
-    end
+    direct = Friendship.find_by(user_id: user_id, friend_id: friend_id)
+    reverse = Friendship.find_by(user_id: friend_id, friend_id: user_id)
+
+    friendship = direct || reverse
+    return unless friendship
+
+    errors.add(:friend, friendship.confirmed ? 'already exists' : 'request is pending')
   end
 end
