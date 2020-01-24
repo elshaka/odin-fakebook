@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships
+  has_many :friends, -> { where(friendships: { confirmed: true }) }, through: :friendships
 
   devise :database_authenticatable, :registerable, :validatable, :rememberable
 
@@ -13,7 +13,6 @@ class User < ApplicationRecord
 
   def create_friend_request(friend, confirmed = false)
     friendships.create friend_id: friend.id, confirmed: confirmed
-    friend.friendships.create friend_id: id, confirmed: confirmed
   end
 
   def friend?(user)
