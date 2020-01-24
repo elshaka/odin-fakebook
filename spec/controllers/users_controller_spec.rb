@@ -45,6 +45,8 @@ RSpec.describe UsersController, type: :controller do
       expect(user.friendships).to include(friendship)
       expect(friend.reverse_friendships).to include(friendship)
       post :cancel_friend_request, params: { id: friend.id }, xhr: true
+      user.reload
+      friend.reload
       expect(user.friendships).not_to include(friendship)
       expect(friend.reverse_friendships).not_to include(friendship)
     end
@@ -57,6 +59,8 @@ RSpec.describe UsersController, type: :controller do
       expect(user.reverse_friendships).to include(friendship)
       expect(friend.friendships).to include(friendship)
       post :reject_friend_request, params: { id: friend.id }, xhr: true
+      user.reload
+      friend.reload
       expect(user.reverse_friendships).not_to include(friendship)
       expect(friend.friendships).not_to include(friendship)
     end
