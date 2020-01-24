@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :reverse_friendships, class_name: 'Friendship', foreign_key: :friend_id, dependent: :destroy
+  has_many :friends, through: :friendships
 
   devise :database_authenticatable, :registerable, :validatable, :rememberable
 
@@ -11,8 +11,9 @@ class User < ApplicationRecord
 
   before_save :set_profile_image_url
 
-  def friends
-    User.where(id: friends_ids)
+  def create_friend_request(friend, confirmed = false)
+    friendships.create friend_id: friend.id, confirmed: confirmed
+    friend.friendships.create friend_id: id, confirmed: confirmed
   end
 
   def friend?(user)
@@ -24,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def friendship_request_received?(user)
-    reverse_friendships.find_by(user: user, confirmed: false)
+    friendships.find_by(user: user, confirmed: false)
   end
 
   def timeline_posts
@@ -39,8 +40,6 @@ class User < ApplicationRecord
   end
 
   def friends_ids
-    ids = friendships.where(confirmed: true).pluck(:friend_id)
-    ids += reverse_friendships.where(confirmed: true).pluck(:user_id)
-    ids
+    friendships.where(confirmed: true).pluck(:friend_id)
   end
 end
