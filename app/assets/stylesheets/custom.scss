@@ -67,3 +67,14 @@ h2, h3 {
     color: inherit;
   }
 }
+
+.profile-box {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.profile-icon {
+  width: 2em;
+  height: 2em;
+}
