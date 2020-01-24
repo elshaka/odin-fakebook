@@ -2,20 +2,10 @@ class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User'
 
-  validate :friend_validity
-  validate :friendship_uniqueness
+  validates :friend, uniqueness: { scope: :user }
+  validate :friend_isnt_same_as_user
 
-  def friend_validity
+  def friend_isnt_same_as_user
     errors.add(:friend, "can't be the same as user") if friend_id == user_id
-  end
-
-  def friendship_uniqueness
-    direct = Friendship.find_by(user_id: user_id, friend_id: friend_id)
-    reverse = Friendship.find_by(user_id: friend_id, friend_id: user_id)
-
-    friendship = direct || reverse
-    return unless friendship
-
-    errors.add(:friend, friendship.confirmed ? 'already exists' : 'request is pending')
   end
 end
