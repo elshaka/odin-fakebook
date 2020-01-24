@@ -16,15 +16,15 @@ class User < ApplicationRecord
   end
 
   def friendship_request_sent?(user)
-    friendships.find_by(friend: user, confirmed: false)
+    friendships.where(friend: user, confirmed: false, sent: true).any?
   end
 
   def friendship_request_received?(user)
-    friendships.find_by(user: user, confirmed: false)
+    friendships.where(friend: user, confirmed: false, sent: false).any?
   end
 
   def timeline_posts
-    Post.where(user_id: [id] + friends_ids)
+    Post.where(user_id: [id] + friends.pluck(:id))
   end
 
   private
@@ -32,9 +32,5 @@ class User < ApplicationRecord
   def set_profile_image_url
     gravatar_id = Digest::MD5.hexdigest(email.downcase)
     self.profile_image_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
-  end
-
-  def friends_ids
-    friendships.where(confirmed: true).pluck(:friend_id)
   end
 end

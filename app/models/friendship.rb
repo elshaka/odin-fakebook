@@ -14,7 +14,7 @@ class Friendship < ApplicationRecord
   end
 
   def create_reverse_friendship
-    reverse_friendship = Friendship.new user: self.friend, friend: self.user, confirmed: self.confirmed
+    reverse_friendship = Friendship.new user: self.friend, friend: self.user, confirmed: self.confirmed, sent: false
     reverse_friendship.save if reverse_friendship.valid?
   end
 
