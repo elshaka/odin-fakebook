@@ -1,0 +1,13 @@
+<li id="user-<%= user.id %>" class="list-group-item">
+  <div class="d-flex align-items-center">
+    <div class="mr-3">
+      <%= image_tag user.profile_image_url + '?s=48', alt: user.name %>
+    </div>
+    <div class="flex-fill">
+      <%= link_to user.name, user %>
+    </div>
+    <div class="">
+      <%= render 'user_friendship_actions', user: user %>
+    </div>
+  </div>
+</li>

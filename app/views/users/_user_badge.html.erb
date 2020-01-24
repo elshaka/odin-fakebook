@@ -2,7 +2,7 @@
   <%= link_to image_tag(user.profile_image_url + '?s=256', class: 'card-img-top', alt: user.name), user %>
   <div class="card-body">
     <h5 class="card-title"><%= link_to user.name, user %></h5>
-    <p class="card-text">User profile info here</p>
+    <p class="card-text"><%= user.bio %></p>
     <%= render 'user_friendship_actions', user: user %>
   </div>
 </div>

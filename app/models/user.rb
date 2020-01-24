@@ -12,8 +12,6 @@ class User < ApplicationRecord
   before_save :set_profile_image_url
 
   def friends
-    friends_ids = friendships.where(confirmed: true).pluck(:friend_id)
-    friends_ids += reverse_friendships.where(confirmed: true).pluck(:user_id)
     User.where(id: friends_ids)
   end
 
@@ -30,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def timeline_posts
-    Post.where(user_id: [self.id] + friends.pluck(:id))
+    Post.where(user_id: [self.id] + friends_ids)
   end
 
   private
@@ -38,5 +36,10 @@ class User < ApplicationRecord
   def set_profile_image_url
     gravatar_id = Digest::MD5.hexdigest(email.downcase)
     self.profile_image_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
+  end
+
+  def friends_ids
+    friends_ids = friendships.where(confirmed: true).pluck(:friend_id)
+    friends_ids += reverse_friendships.where(confirmed: true).pluck(:user_id)
   end
 end

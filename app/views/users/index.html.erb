@@ -1,10 +1,7 @@
-<div class="profiles">
-  <div class="row">
+<div class="users card">
+  <ul class="list-group list-group-flush">
     <% @users.each do |user| %>
-      <div class="col-md-3 mb-2">
-        <%= render 'user', user: user %>
-      </div>
+      <%= render 'user_list_item', user: user %>
     <% end %>
-  </div>
-  </ol>
+  </ul>
 </div>
