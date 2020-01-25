@@ -1,0 +1,13 @@
+<div class="friendship-actions">
+  <% if current_user == user %>
+    <%= link_to 'Edit profile', edit_user_registration_path, class: 'btn btn-sm btn-primary' %>
+  <% elsif current_user.friend? user %>
+    <span><%= link_to 'Delete from friends', delete_friend_user_path(user), data: { method: :post, remote: true, confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></span>
+  <% elsif current_user.friendship_request_sent? user %>
+    <span><%= link_to 'Cancel friend request', cancel_friend_request_user_path(user), data: { method: :post, remote: true, confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-warning' %></span>
+  <% elsif current_user.friendship_request_received? user %>
+    <span>Accept friend request? <%= link_to 'Yes', accept_friend_request_user_path(user), data: { method: :post, remote: true }, class: 'btn btn-sm btn-outline-success' %> <%= link_to 'No', reject_friend_request_user_path(user), data: { method: :post, remote: true, confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-warning' %></span>
+  <% else %>
+    <span><%= link_to 'Send friend request', send_friend_request_user_path(user), data: { method: :post, remote: true }, class: 'btn btn-sm btn-outline-primary' %></span>
+  <% end %>
+</div>

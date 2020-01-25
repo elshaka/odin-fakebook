@@ -1,7 +1,8 @@
 <div class="new-comment">
-  Add comment to post:
   <%= form_with url: comment_post_path(post) do |form| %>
-    <%= form.text_area :content, size: "48x3" %> <br/>
-    <%= form.submit "Comment" %>
+    <div class="form-group">
+      <%= form.text_area :content, class: "form-control mt-2" %>
+    </div>
+    <%= form.submit "Add a comment", class: 'btn btn-primary' %>
   <% end %>
 </div>

@@ -51,10 +51,6 @@ h2, h3 {
 
 .user-container {
   margin-bottom: 20px;
-
-  a {
-    color: inherit;
-  }
 }
 
 .likes-link {
@@ -64,4 +60,10 @@ h2, h3 {
 
 .comments-link {
   color: $secondary;
+}
+
+.comment {
+  a {
+    color: inherit;
+  }
 }

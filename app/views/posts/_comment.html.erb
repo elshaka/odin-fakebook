@@ -1,5 +1,12 @@
-<div class="comment">
-  <div class="comment-date">Date: <%= comment.created_at %></div>
-  <div class="comment-author">Author: <%= comment.user.name %></div>
-  <div class="comment-content"><%= comment.content %></div>
-</div>
+<li class="comment list-group-item">
+  <div class="d-flex">
+    <div class="mr-3">
+      <%= image_tag comment.user.profile_image_url + '?s=48', alt: comment.user.name %>
+    </div>
+    <div class="flex-fill">
+      <h6 class="d-inline-block"><%= link_to comment.user.name, comment.user, class: 'font-bold' %></h6>
+      <small class="text-muted font-italic"> <%= time_ago_in_words(comment.created_at) %> ago</small>
+      <p><%= comment.content %></p>
+    </div>
+  </div>
+</li>
