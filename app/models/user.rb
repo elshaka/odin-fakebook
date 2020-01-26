@@ -12,6 +12,30 @@ class User < ApplicationRecord
 
   before_save :set_profile_image_url
 
+  def timeline_posts
+    Post.where(user_id: [id] + friends.pluck(:id))
+  end
+
+  def send_friend_request(user)
+    friendships.create(friend: user)
+  end
+
+  def cancel_friend_request(user)
+    friendships.find_by(friend: user, confirmed: false, sent: true)&.destroy
+  end
+
+  def accept_friend_request(user)
+    friendships.find_by(friend: user)&.update_attribute(:confirmed, true)
+  end
+
+  def reject_friend_request(user)
+    friendships.find_by(friend: user, confirmed: false, sent: false)&.destroy
+  end
+
+  def delete_friend(user)
+    friends.destroy(user)
+  end
+
   def friend?(user)
     friends.include?(user)
   end
@@ -22,10 +46,6 @@ class User < ApplicationRecord
 
   def friendship_request_received?(user)
     friendships.where(friend: user, confirmed: false, sent: false).any?
-  end
-
-  def timeline_posts
-    Post.where(user_id: [id] + friends.pluck(:id))
   end
 
   def self.from_omniauth(auth)

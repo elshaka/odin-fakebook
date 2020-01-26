@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show; end
 
   def send_friend_request
-    current_user.friendships.create friend_id: params[:id]
+    current_user.send_friend_request(@user)
 
     respond_to do |format|
       format.js { render :refresh_user_friendship_actions }
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def cancel_friend_request
-    current_user.friendships.find_by(friend_id: params[:id], confirmed: false)&.destroy
+    current_user.cancel_friend_request(@user)
 
     respond_to do |format|
       format.js { render :refresh_user_friendship_actions }
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def accept_friend_request
-    current_user.friendships.find_by(friend_id: params[:id])&.update_attribute(:confirmed, true)
+    current_user.accept_friend_request(@user)
 
     respond_to do |format|
       format.js { render :refresh_user_friendship_actions }
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def reject_friend_request
-    current_user.friendships.find_by(friend_id: params[:id], confirmed: false)&.destroy
+    current_user.reject_friend_request(@user)
 
     respond_to do |format|
       format.js { render :refresh_user_friendship_actions }
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def delete_friend
-    current_user.friendships.find_by(friend_id: params[:id], confirmed: true)&.destroy
+    current_user.delete_friend(@user)
 
     respond_to do |format|
       format.js { render :refresh_user_friendship_actions }
