@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def accept_friend_request
-    current_user.reverse_friendships.find_by(user_id: params[:id])&.update_attribute(:confirmed, true)
+    current_user.friendships.find_by(friend_id: params[:id])&.update_attribute(:confirmed, true)
 
     respond_to do |format|
       format.js { render :refresh_user_friendship_actions }
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def reject_friend_request
-    current_user.reverse_friendships.find_by(user_id: params[:id], confirmed: false)&.destroy
+    current_user.friendships.find_by(friend_id: params[:id], confirmed: false)&.destroy
 
     respond_to do |format|
       format.js { render :refresh_user_friendship_actions }
@@ -40,9 +40,7 @@ class UsersController < ApplicationController
   end
 
   def delete_friend
-    friendship = current_user.friendships.find_by(friend_id: params[:id], confirmed: true)
-    friendship ||= current_user.reverse_friendships.find_by(user_id: params[:id], confirmed: true)
-    friendship&.destroy
+    current_user.friendships.find_by(friend_id: params[:id], confirmed: true)&.destroy
 
     respond_to do |format|
       format.js { render :refresh_user_friendship_actions }
