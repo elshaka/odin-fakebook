@@ -6,10 +6,35 @@ class User < ApplicationRecord
   has_many :friends, -> { where(friendships: { confirmed: true }) }, through: :friendships
 
   devise :database_authenticatable, :registerable, :validatable, :rememberable
+  devise :omniauthable, omniauth_providers: %i[facebook]
 
   validates :name, presence: true, length: { maximum: 50 }
 
   before_save :set_profile_image_url
+
+  def timeline_posts
+    Post.where(user_id: [id] + friends.pluck(:id))
+  end
+
+  def send_friend_request(user)
+    friendships.create(friend: user)
+  end
+
+  def cancel_friend_request(user)
+    friendships.find_by(friend: user, confirmed: false, sent: true)&.destroy
+  end
+
+  def accept_friend_request(user)
+    friendships.find_by(friend: user)&.update_attribute(:confirmed, true)
+  end
+
+  def reject_friend_request(user)
+    friendships.find_by(friend: user, confirmed: false, sent: false)&.destroy
+  end
+
+  def delete_friend(user)
+    friends.destroy(user)
+  end
 
   def friend?(user)
     friends.include?(user)
@@ -23,8 +48,12 @@ class User < ApplicationRecord
     friendships.where(friend: user, confirmed: false, sent: false).any?
   end
 
-  def timeline_posts
-    Post.where(user_id: [id] + friends.pluck(:id))
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name
+    end
   end
 
   private

@@ -10,7 +10,10 @@
           <%= link_to 'Home', root_path, class: 'nav-link' %>
         </li>
         <li class="nav-item <%= 'active' if current_page?(user_path(current_user)) %>">
-          <%= link_to 'Profile', user_path(current_user), class: 'nav-link' %>
+          <div class="profile-box">
+            <%= image_tag current_user.profile_image_url, class: 'profile-icon' %>
+            <%= link_to current_user.name, user_path(current_user), class: 'nav-link' %>
+          </div>
         </li>
         <li class="nav-item <%= 'active' if current_page?(users_path) %>">
           <%= link_to 'Users', users_path, class: 'nav-link' %>
