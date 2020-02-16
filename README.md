@@ -1,8 +1,9 @@
 # Odin Facebook
 
-![screenshot #001](screenshot-001.png)
-![screenshot #002](screenshot-002.png)
-![screenshot #003](screenshot-003.png)
+| ![screenshot #001](screenshot-001.png)  | ![screenshot #002](screenshot-002.png)  |
+| ------------- | ------------- |
+| ![screenshot #003](screenshot-003.png)  | ![screenshot #003](screenshot-004.png)  |
+
 
 ## About this repository
 
@@ -14,7 +15,7 @@ This repository stores a Ruby on Rails practice which consists of creating a web
 
 ## Installation and getting started
 
-In order to see this project up and running, you'll need a computer with [PostgreSQL](https://www.postgresql.org/) and [Ruby](ruby-lang.org) on [Rails](rubyonrails.org) properly installed and set-up. If that is your case, the following sequence of commands may help you install this project:
+To run this locally you'll need [PostgreSQL](https://www.postgresql.org/) and [Ruby](ruby-lang.org) on [Rails](rubyonrails.org) properly installed and set-up. If that's your case the following sequence of commands may help you install this project:
 
 ```
 git clone https://github.com/frederico-miranda/odin-fakebook/
