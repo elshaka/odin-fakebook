@@ -7,7 +7,23 @@
 
 ## About this repository
 
-This repository stores a Ruby on Rails practice which consists of creating a web service that mimics Facebook. The full description for this practice can be found at the following link: [The Odin Project - Ruby on Rails - Final Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project).
+This repository stores a Ruby on Rails project which consists of creating a web service that mimics Facebook. The full description for this practice can be found at the following link: [The Odin Project - Ruby on Rails - Final Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project).
+
+## Built with
+
+- Ruby on Rails
+- PostgreSQL
+- Bootstrap
+- Devise
+- [omniauth-facebook](https://github.com/simi/omniauth-facebook)
+
+## Features
+
+- User signup and signin.
+- Signin with facebook support.
+- Profile images retrieved from Gravatar.
+- Posts, likes and comments.
+- Friendship requests (create, cancel, accept, reject).
 
 ## Live version
 
@@ -32,6 +48,12 @@ APP_ID=<YOUR APP ID> APP_SECRET=<YOUR APP SECRET> rails s
 
 ## Authors
 
-[Frederico Miranda](https://github.com/frederico-miranda/)
+👤 **Eleazar Meza**
 
-[Eleazar Meza](https://github.com/elshaka/)
+- Github: [@elshaka](https://github.com/elshaka)
+- Twitter: [@elshaka](https://twitter.com/elshaka)
+- Linkedin: [Eleazar Meza](https://www.linkedin.com/in/elshaka/)
+
+👤 **Frederico Miranda**
+
+- Github: [@frederico-miranda](https://github.com/frederico-miranda/)
