@@ -25,7 +25,7 @@ This repository stores a Ruby on Rails project which consists of creating a web 
 - Profile images retrieved from Gravatar.
 - Posts, likes and comments.
 - Friendship requests (create, cancel, accept, reject).
-- Notifications for comments, likes and friendhips (retrieved asynchronously)
+- Notifications for comments, likes and friendships (retrieved asynchronously)
 
 ## Live version
 
