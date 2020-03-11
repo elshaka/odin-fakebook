@@ -12,6 +12,6 @@ class Comment < ApplicationRecord
       title: "#{user.name} commented on your post",
       url: post_path(post) + "#comment-#{id}",
       icon: 'comment'
-    ) # unless self.user.id == self.post.user.id
+    ) unless self.user.id == self.post.user.id
   end
 end

@@ -11,6 +11,6 @@ class Like < ApplicationRecord
       title: "#{user.name} liked your post",
       url: post_path(post),
       icon: 'heart'
-    ) # unless self.user.id == self.post.user.id
+    ) unless self.user.id == self.post.user.id
   end
 end

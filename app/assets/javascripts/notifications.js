@@ -1,4 +1,4 @@
-const check = () => {
+function check() {
   $.get('/notifications');
 }
 
