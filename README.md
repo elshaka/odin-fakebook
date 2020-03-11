@@ -1,9 +1,9 @@
 # Odin Facebook
 
-| ![screenshot #001](screenshot-001.png)  | ![screenshot #002](screenshot-002.png)  |
+| ![screenshot #001](screenshot-001.png)  | ![screenshot #002](screenshot-002.png)  
 | ------------- | ------------- |
 | ![screenshot #003](screenshot-003.png)  | ![screenshot #003](screenshot-004.png)  |
-
+| ![screenshot #005](screenshot-005.png)  |
 
 ## About this repository
 
@@ -12,6 +12,7 @@ This repository stores a Ruby on Rails project which consists of creating a web 
 ## Built with
 
 - Ruby on Rails
+- jQuery
 - PostgreSQL
 - Bootstrap
 - Devise
@@ -24,6 +25,7 @@ This repository stores a Ruby on Rails project which consists of creating a web 
 - Profile images retrieved from Gravatar.
 - Posts, likes and comments.
 - Friendship requests (create, cancel, accept, reject).
+- Notifications for comments, likes and friendhips (retrieved asynchronously)
 
 ## Live version
 
