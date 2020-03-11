@@ -1,4 +1,4 @@
-<li class="comment list-group-item">
+<li id="comment-<%=comment.id %>" class="comment list-group-item">
   <div class="d-flex">
     <div class="mr-3">
       <%= image_tag comment.user.profile_image_url + '?s=48', alt: comment.user.name %>

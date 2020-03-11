@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :friendships, dependent: :destroy
   has_many :friends, -> { where(friendships: { confirmed: true }) }, through: :friendships
+  has_many :notifications, dependent: :destroy
 
   devise :database_authenticatable, :registerable, :validatable, :rememberable
   devise :omniauthable, omniauth_providers: %i[facebook]
@@ -18,6 +19,11 @@ class User < ApplicationRecord
 
   def send_friend_request(user)
     friendships.create(friend: user)
+    user.notifications.create(
+      title: "#{name} sent you a friendship request",
+      url: user_path(self),
+      icon: 'user-friends'
+    )
   end
 
   def cancel_friend_request(user)
@@ -26,6 +32,11 @@ class User < ApplicationRecord
 
   def accept_friend_request(user)
     friendships.find_by(friend: user)&.update_attribute(:confirmed, true)
+    user.notifications.create(
+      title: "#{name} accepted your friendship request",
+      url: user_path(self),
+      icon: 'user-friends'
+    )
   end
 
   def reject_friend_request(user)

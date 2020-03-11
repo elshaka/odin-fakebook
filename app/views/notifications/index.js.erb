@@ -1,0 +1,9 @@
+$('#notification-count').remove();
+$('#notifications .dropdown-item').remove();
+$('#notifications .dropdown-divider').remove();
+
+<% if @notifications.count > 0 %>
+  $('#notifications .dropdown-toggle').append('<%= notification_count_badge(@notifications.count) %>');
+<% end %>
+
+$('#notifications .dropdown-menu').append(`<%= render 'layouts/notifications', notifications: @notifications %>`);

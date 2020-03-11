@@ -19,4 +19,8 @@ Rails.application.routes.draw do
       post :comment
     end
   end
+
+  get '/notifications', to: 'notifications#index'
+  post '/notifications/:id/mark_as_read', to: 'notifications#mark_as_read', as: 'mark_as_read_notification'
+  post '/notifications/mark_all_as_read', to: 'notifications#mark_all_as_read', as: 'mark_all_as_read_notifications'
 end

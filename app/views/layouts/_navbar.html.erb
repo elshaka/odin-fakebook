@@ -6,9 +6,6 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item <%= 'active' if current_page?(root_path) %>">
-          <%= link_to 'Home', root_path, class: 'nav-link' %>
-        </li>
         <li class="nav-item <%= 'active' if current_page?(user_path(current_user)) %>">
           <div class="profile-box">
             <%= image_tag current_user.profile_image_url, class: 'profile-icon' %>
@@ -17,6 +14,17 @@
         </li>
         <li class="nav-item <%= 'active' if current_page?(users_path) %>">
           <%= link_to 'Users', users_path, class: 'nav-link' %>
+        </li>
+        <li id="notifications" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell"></i>
+            <% if current_user.notifications.unread.any? %>
+              <%= notification_count_badge(current_user.notifications.unread.count) %>
+            <% end %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= render 'layouts/notifications', notifications: current_user.notifications.unread %>
+          </div>
         </li>
         <li class="nav-item">
           <%= link_to 'Sign out', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'nav-link' %>

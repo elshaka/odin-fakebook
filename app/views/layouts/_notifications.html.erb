@@ -1,0 +1,10 @@
+<% if notifications.any? %>
+  <%= link_to "Mark all notifications as read", mark_all_as_read_notifications_path,
+    class: 'dropdown-item', method: :post, remote: true %>
+  <div class="dropdown-divider"></div>
+  <% notifications.each do |n| %>
+    <%= notification_link(n) %>
+  <% end %>
+<% else %>
+  <%= link_to "No unread notifications", '#', class: 'dropdown-item' %>
+<% end %>
